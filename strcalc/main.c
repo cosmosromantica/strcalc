@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <errno.h>
 
 #define ARGS_COUNT 3
@@ -15,6 +16,8 @@
 #define INPUT_ERROR_MSG                             \
 "Error while passing expression string.             \
 Please use:\n\tstrcalc <left> {+, -, *, /} <right>"
+
+double round_to(double value, int chars);
 
 int main(int argc, const char * argv[]) {
     double  left = 0.0f,            // left operand of the expression
@@ -27,4 +30,9 @@ int main(int argc, const char * argv[]) {
     }
     
     return EXIT_SUCCESS;
+}
+
+double round_to(double value, int chars) {
+    int offset = pow(10, chars);
+    return round(value * offset) / offset;
 }
